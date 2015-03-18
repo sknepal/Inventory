@@ -52,7 +52,8 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 	                <li><a href="/inventory/Categories">Categories</a></li>
                         <li><a href="/inventory/users">Users</a></li>
                         <?php if(AuthComponent::user()) :?>
-                        <li> <a href="/inventory/users/logout">Log out</a></li>
+                        <li> <a href="/inventory/users/logout">Log out   </a></li>
+                        <li> Hello <?php echo $this->Session->read('Auth.User.username') ; ?></li>
                        
                         <?php else: ?>
                             <li> <a href="/inventory/users/login">Log in  </li>
