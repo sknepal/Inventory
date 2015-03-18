@@ -46,7 +46,12 @@ class SalesController extends AppController {
  *
  * @return void
  */
-	public function add() {
+	public function add($id=null) {
+            if(!$id){
+                throw new NotFoundException(__('Id was not set'));
+            }
+            
+            $data=$this->Sale->findById($id);
 		if ($this->request->is('post')) {
 			$this->Sale->create();
 			if ($this->Sale->save($this->request->data)) {
@@ -56,10 +61,10 @@ class SalesController extends AppController {
 				$this->Session->setFlash(__('The sale could not be saved. Please, try again.'));
 			}
 		}
-		$users = $this->Sale->User->find('list');
-		$categories = $this->Sale->Category->find('list');
-		$items = $this->Sale->Item->find('list');
-		$this->set(compact('users', 'categories', 'items'));
+		//$users = $this->Sale->User->find('list');
+		//$categories = $this->Sale->Category->find('list');
+		//$items = $this->Sale->Item->find('list');
+		$this->set(compact('users', 'categories', 'items','data'));
 	}
 
 /**

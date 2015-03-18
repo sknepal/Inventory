@@ -15,6 +15,7 @@
 	</tr>
 	</thead>
 	<tbody>
+            
 	<?php foreach ($items as $item): ?>
 	<tr>
 		<td><?php echo h($item['Item']['id']); ?>&nbsp;</td>
@@ -37,8 +38,6 @@
 <?php endforeach; ?>
 	</tbody>
 	</table>
-	
-	
 </div>
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
