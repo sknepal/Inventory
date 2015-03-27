@@ -14,7 +14,7 @@ class Sale extends AppModel {
  *
  * @var string
  */
-	public $displayField = 'item_id';
+public $displayField = array('item_id', 'sold_price');
 
 /**
  * Validation rules
@@ -115,13 +115,13 @@ class Sale extends AppModel {
 			'fields' => '',
 			'order' => ''
 		),
-		'Category' => array(
-			'className' => 'Category',
-			'foreignKey' => 'category_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		),
+//		'Category' => array(
+//			'className' => 'Category',
+//			'foreignKey' => 'category_id',
+//			'conditions' => '',
+//			'fields' => '',
+//			'order' => ''
+//		),
 		'Item' => array(
 			'className' => 'Item',
 			'foreignKey' => 'item_id',
@@ -130,4 +130,5 @@ class Sale extends AppModel {
 			'order' => ''
 		)
 	);
+        //public $belongsTo=array('User','Item');
 }

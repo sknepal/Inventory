@@ -1,6 +1,9 @@
+<?php echo $this->Html->script('search'); ?>
 <div class="categories index">
 	<h2><?php echo __('Categories'); ?></h2>
-	<table cellpadding="0" cellspacing="0">
+        <section class="container">
+	<input type="search" class="light-table-filter" data-table="order-table" placeholder="Search">
+        <table cellpadding="0" cellspacing="0" class="order-table table">
 	<thead>
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
@@ -23,14 +26,6 @@
 <?php endforeach; ?>
 	</tbody>
 	</table>
+	</section>
 	
-	
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('New Category'), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List Items'), array('controller' => 'items', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Item'), array('controller' => 'items', 'action' => 'add')); ?> </li>
-	</ul>
 </div>

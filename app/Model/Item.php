@@ -136,6 +136,7 @@ class Item extends AppModel {
 		'Category' => array(
 			'className' => 'Category',
 			'foreignKey' => 'category_id',
+                    'dependent'=>'false',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
@@ -160,7 +161,8 @@ class Item extends AppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => ''
-		)
+		),
+            
 	);
 
 }

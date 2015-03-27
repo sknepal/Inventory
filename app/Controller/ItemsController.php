@@ -21,9 +21,13 @@ class ItemsController extends AppController {
  *
  * @return void
  */
-	public function index($id=null) {
+        public function calculate(){
+            
+        }
+	
+        public function index($id=null) {
 		//$this->Item->recursive = 0;
-		$this->set('items', $this->Paginator->paginate());
+		//$this->set('items', $this->Paginator->paginate());
                 
                 
                 $data = $this -> Item->find('all',array('order' => 'created',

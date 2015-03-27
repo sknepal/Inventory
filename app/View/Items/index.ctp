@@ -1,6 +1,9 @@
+<?php echo $this->Html->script('search');?>
 <div class="items index">
 	<h2><?php echo __('Items'); ?></h2>
-	<table cellpadding="0" cellspacing="0">
+        <section class="container">
+        <input type="search" class="light-table-filter" data-table="order-table" placeholder="Search">
+	<table cellpadding="0" cellspacing="0" class="order-table table">
 	<thead>
 	<tr>
 			<th>id</th>
@@ -38,6 +41,7 @@
 <?php endforeach; ?>
 	</tbody>
 	</table>
+</section>
 </div>
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>

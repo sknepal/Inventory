@@ -5,7 +5,7 @@
 	<?php
 		echo $this->Form->input('id');
 		echo $this->Form->input('category_id');
-		echo $this->Form->input('name');
+		echo $this->Form->input('title');
 		echo $this->Form->input('total_quantity');
 		echo $this->Form->input('price');
 	?>

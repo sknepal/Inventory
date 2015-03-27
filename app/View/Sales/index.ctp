@@ -1,11 +1,14 @@
+<?php echo $this->Html->script('search'); ?>
 <div class="sales index">
 	<h2><?php echo __('Sales'); ?></h2>
-	<table cellpadding="0" cellspacing="0">
+        <section class="container">
+        <input type="search" class="light-table-filter" data-table="order-table" placeholder="Search">
+        <table cellpadding="0" cellspacing="0" class="order-table table">
 	<thead>
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('user_id'); ?></th>
-			<th><?php echo $this->Paginator->sort('category_id'); ?></th>
+			
 			<th><?php echo $this->Paginator->sort('item_id'); ?></th>
 			<th><?php echo $this->Paginator->sort('price'); ?></th>
 			<th><?php echo $this->Paginator->sort('sold_price'); ?></th>
@@ -21,13 +24,11 @@
 		<td>
 			<?php echo $this->Html->link($sale['User']['id'], array('controller' => 'users', 'action' => 'view', $sale['User']['id'])); ?>
 		</td>
-		<td>
-			<?php echo $this->Html->link($sale['Category']['name'], array('controller' => 'categories', 'action' => 'view', $sale['Category']['id'])); ?>
-		</td>
+		
 		<td>
 			<?php echo $this->Html->link($sale['Item']['title'], array('controller' => 'items', 'action' => 'view', $sale['Item']['id'])); ?>
 		</td>
-		<td><?php echo h($sale['Sale']['price']); ?>&nbsp;</td>
+		<td><?php echo h($sale['Item']['price']); ?>&nbsp;</td>
 		<td><?php echo h($sale['Sale']['sold_price']); ?>&nbsp;</td>
 		<td><?php echo h($sale['Sale']['date']); ?>&nbsp;</td>
 		<td><?php echo h($sale['Sale']['quantity']); ?>&nbsp;</td>
@@ -40,19 +41,7 @@
 <?php endforeach; ?>
 	</tbody>
 	</table>
-	<p>
-	<?php
-	echo $this->Paginator->counter(array(
-	'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
-	));
-	?>	</p>
-	<div class="paging">
-	<?php
-		echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled'));
-		echo $this->Paginator->numbers(array('separator' => ''));
-		echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
-	?>
-	</div>
+        </section>	
 </div>
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>

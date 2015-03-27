@@ -14,7 +14,7 @@ class SalesController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session');
+	public $components = array('Paginator', 'Session','Auth');
 
 /**
  * index method
@@ -51,7 +51,7 @@ class SalesController extends AppController {
                 throw new NotFoundException(__('Id was not set'));
             }
             
-            $data=$this->Sale->findById($id);
+           //$data=$this->Sale->Item->findById($id);
 		if ($this->request->is('post')) {
 			$this->Sale->create();
 			if ($this->Sale->save($this->request->data)) {
@@ -61,10 +61,25 @@ class SalesController extends AppController {
 				$this->Session->setFlash(__('The sale could not be saved. Please, try again.'));
 			}
 		}
+                else{
+//
+                  $options = array('controller'=>'items','conditions' => array('Item.'
+                      . $this->Sale->Item->primaryKey => $id));
+		$data = $this->Sale->Item->find('list', $options);
+//                  
+//                        $options = array('conditions' => array('Category.' . $this->Category->primaryKey => $id));
+//			$this->request->data = $this->Category->find('first', $options);
+                        }
+                //$items = $this->Sale->Item->find('list');
 		//$users = $this->Sale->User->find('list');
+                //$overall=array($data,$uid);
+                  //      $this->set('items', $data);
+               // $items = $this->Sale->Item->find('list');
+                $this->set('items',$data);
+		//$this->redirect(array('controller'=>'items','action'=>'calculate'));
 		//$categories = $this->Sale->Category->find('list');
-		//$items = $this->Sale->Item->find('list');
-		$this->set(compact('users', 'categories', 'items','data'));
+		
+		//$this->set(compact('users', 'categories', 'items','data'));
 	}
 
 /**
@@ -89,11 +104,14 @@ class SalesController extends AppController {
 			$options = array('conditions' => array('Sale.' . $this->Sale->primaryKey => $id));
 			$this->request->data = $this->Sale->find('first', $options);
 		}
-		$users = $this->Sale->User->find('list');
-		$categories = $this->Sale->Category->find('list');
-		$items = $this->Sale->Item->find('list');
-		$this->set(compact('users', 'categories', 'items'));
-	}
+		//$users = $this->Sale->User->find('list');
+		//$categories = $this->Sale->Category->find('list');
+		//$items = $this->Sale->Item->find('list');
+		//$this->set(compact('users', 'categories', 'items'));
+                //$this->set('items',$this->Sale->Item->find('list'));
+                $items = $this->Sale->Item->find('list');
+		$this->set(compact('items'));
+                }
 
 /**
  * delete method
