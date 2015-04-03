@@ -15,15 +15,40 @@ class SalesController extends AppController {
  * @var array
  */
 	public $components = array('Paginator', 'Session','Auth');
-
+        public $helpers= array('GChart.GChart');
 /**
  * index method
  *
  * @return void
  */
 	public function index() {
+            
+                
 		$this->Sale->recursive = 0;
 		$this->set('sales', $this->Paginator->paginate());
+                
+                $data = array(
+  'labels' => array(
+    array('string' => 'Sample'),
+    array('number' => 'Piston 1'),
+    array('number' => 'Piston 2')
+  ),
+  'data' => array(
+    array('S1', 74.01, 74.03),
+    array('S2', 74.05, 74.04),
+    array('S3', 74.03, 74.01),
+    array('S4', 74.00, 74.02),
+    array('S5', 74.12, 74.05),
+    array('S6', 74.04, 74.04),
+    array('S7', 74.05, 74.06),
+    array('S8', 74.03, 74.02),
+    array('S9', 74.01, 74.03),
+    array('S10', 74.04, 74.01),
+  ),
+  'title' => 'Pie Chart',
+  'type' => 'pie'
+);
+                $this->set('data',$data);
 	}
 
 /**
@@ -64,7 +89,7 @@ class SalesController extends AppController {
                 else{
 //
                   $options = array('controller'=>'items','conditions' => array('Item.'
-                      . $this->Sale->Item->primaryKey => $id));
+                                                 . $this->Sale->Item->primaryKey => $id));
 		$data = $this->Sale->Item->find('list', $options);
 //                  
 //                        $options = array('conditions' => array('Category.' . $this->Category->primaryKey => $id));

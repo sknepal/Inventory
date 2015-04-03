@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 18, 2015 at 02:48 PM
+-- Generation Time: Apr 03, 2015 at 07:03 PM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `categories` (
 `id` int(10) unsigned NOT NULL,
   `name` varchar(50) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `categories`
@@ -38,7 +38,8 @@ CREATE TABLE IF NOT EXISTS `categories` (
 INSERT INTO `categories` (`id`, `name`) VALUES
 (1, 'Pants'),
 (2, 'Shirts'),
-(3, 'Socks');
+(3, 'Socks'),
+(4, 'shirts');
 
 -- --------------------------------------------------------
 
@@ -62,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `items` (
 --
 
 INSERT INTO `items` (`id`, `category_id`, `title`, `created`, `modified`, `total_quantity`, `remaining_quantity`, `price`) VALUES
-(4, 1, 'Levis', '2015-02-21 19:03:56', '2015-03-18 06:00:59', 10, 0, 1200),
+(4, 1, 'Levis', '2015-02-21 19:03:56', '2015-03-18 06:00:59', 10, 10, 1200),
 (5, 2, 'john players', '2015-02-21 19:18:21', '2015-02-21 19:18:21', 200, 0, 1223),
 (6, 2, 'spring wood2', '2015-02-21 19:18:32', '2015-02-21 19:18:32', 12223, 0, 234),
 (7, 1, 'zaara', '2015-02-21 19:18:46', '2015-02-21 19:18:46', 1232, 0, 123223),
@@ -80,17 +81,24 @@ CREATE TABLE IF NOT EXISTS `sales` (
   `user_id` int(10) NOT NULL,
   `item_id` int(10) unsigned NOT NULL,
   `sold_price` int(10) NOT NULL,
+  `total_price` int(9) NOT NULL,
   `date` datetime NOT NULL,
   `quantity` int(10) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `sales`
 --
 
-INSERT INTO `sales` (`id`, `user_id`, `item_id`, `sold_price`, `date`, `quantity`) VALUES
-(1, 0, 0, 1233, '2015-03-18 07:05:00', 2),
-(2, 0, 4, 1223, '2015-03-18 09:02:00', 23);
+INSERT INTO `sales` (`id`, `user_id`, `item_id`, `sold_price`, `total_price`, `date`, `quantity`) VALUES
+(7, 3, 0, 435, 0, '2015-03-22 10:52:00', 4),
+(8, 3, 0, 645, 0, '2015-03-22 10:54:00', 54),
+(9, 3, 4, 123, 0, '2015-03-22 11:41:00', 1),
+(10, 4, 7, 1233, 0, '2015-03-22 17:34:00', 2),
+(11, 4, 4, 123, 0, '2015-03-26 04:47:00', 23),
+(12, 4, 7, 1200, 0, '2015-03-26 04:49:00', 12),
+(13, 4, 5, 1233, 0, '2015-04-03 04:53:00', 12),
+(14, 4, 4, 1233, 0, '2015-04-03 05:55:00', 3);
 
 -- --------------------------------------------------------
 
@@ -111,7 +119,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `role`, `created`) VALUES
-(3, 'bipinpaudel', '0c187241492d5e11b441003c4b6f89d5cfa8b0a2', 'admin', '2015-03-17 18:06:05'),
+(3, 'bipinpaudel', 'd8394d9df68f1a3b3ecc32086c329bd7491382e6', 'sfdg', '2015-03-17 18:06:05'),
 (4, 'subigyanepal', '0c187241492d5e11b441003c4b6f89d5cfa8b0a2', 'admin', '2015-03-17 18:13:54'),
 (5, 'bhishanbhandari', '0c187241492d5e11b441003c4b6f89d5cfa8b0a2', 'admin', '2015-03-17 18:14:23');
 
@@ -151,7 +159,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `items`
 --
@@ -161,7 +169,7 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
 -- AUTO_INCREMENT for table `sales`
 --
 ALTER TABLE `sales`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `users`
 --
