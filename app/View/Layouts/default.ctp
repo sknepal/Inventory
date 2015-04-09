@@ -14,7 +14,7 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-$cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework');
+$cakeDescription = __d('cake_dev', 'Management System');
 $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 ?>
 <!DOCTYPE html>
@@ -29,6 +29,9 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		echo $this->Html->meta('icon');
 
 		echo $this->Html->css('cake.generic');
+                echo $this->Html->css('bootstrap');
+                echo $this->Html->css('font-awesome');
+                echo $this->Html->css('font-awesome.min');
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
@@ -36,46 +39,44 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 	?>
 </head>
 <body>
-	<div id="container">
-		<div id="header">
-			<h1><?php echo $this->Html->link($cakeDescription, 'http://cakephp.org'); ?></h1>
-		</div>
-           
+	<div class="container-fluid">
+		<div class="page-header">
+			<h2 class="header-content"><?php echo $this->Html->link($cakeDescription, ''); ?></h2>
+                         
+                         </div>
             
             
             
             
 		<div id="content">
-<ul>
-                         <li><a href="/inventory/Sales">sales</a></li>
-	                <li><a href="/inventory/Items">Items</a></li>
-	                <li><a href="/inventory/Categories">Categories</a></li>
-                        <li><a href="/inventory/users">Users</a></li>
-                        <?php if(AuthComponent::user()) :?>
-                        <li> <a href="/inventory/users/logout">Log out   </a></li>
-                        <li> Hello <?php echo $this->Session->read('Auth.User.username') ; ?></li>
-                       
+            <ul class="nav nav-pills">
+                        
+                        
+                            <?php if(AuthComponent::user()) :?>
+                        <li role="presentation"><a href="/inventory/Categories"> Categories</a></li>
+                         <li role="presentation"><a href="/inventory/Sales">Sales</a></li>
+	                
+	                
+                        <li role="presentation"><a href="/inventory/users">Users</a></li>
+                        <li> <a href="/inventory/users/logout" align="right">Log out   </a></li>
+                        <div align="right">
+                        <li role="presentation"> <strong> Hello 
+                            <?php echo $this->Session->read('Auth.User.username') ; ?> </strong></li>
+                       </div>
+                        </ul>
                         <?php else: ?>
-                            <li> <a href="/inventory/users/login">Log in  </li>
+                            
                             <?php endif; ?>
                            
                             
-	            </ul>
-			<?php echo $this->Session->flash(); ?>
+	            
+			<?php //echo $this->Session->flash(); ?>
 
-			<?php echo $this->fetch('content'); ?>
+                            <div align="center"> <?php echo $this->fetch('content'); ?> </div>
 		</div>
-		<div id="footer">
-			<?php echo $this->Html->link(
-					$this->Html->image('cake.power.gif', array('alt' => $cakeDescription, 'border' => '0')),
-					'http://www.cakephp.org/',
-					array('target' => '_blank', 'escape' => false, 'id' => 'cake-powered')
-				);
-			?>
-			<p>
-				<?php echo $cakeVersion; ?>
-			</p>
-		</div>
+		<footer>
+                <address>&copy; Copyright 2015 All Rights Reserved.<br>CKP INC.</address>
+</footer>
 	</div>
 	<?php //echo $this->element('sql_dump'); ?>
 </body>

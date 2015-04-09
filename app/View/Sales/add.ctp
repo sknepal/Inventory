@@ -17,9 +17,9 @@
             ?>		
                 
          <?php	echo $this->Form->input('sold_price',array('id'=>'sold_price')); ?>
-	 <?php	echo $this->Form->input('date'); ?>
+	 <?php	echo $this->Form->input('date',array('type'=>'hidden')); ?>
 	<?php	echo $this->Form->input('quantity',array('id'=>'quantity')); ?>
-          <?php      echo $this->Form->input('total_price',array('id'=>'total_price')); ?>
+              <?php      echo $this->Form->input('total_price',array('id'=>'total_price')); ?>
 	
 	
 <?php echo $this->Form->end(__('Submit')); ?>

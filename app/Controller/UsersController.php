@@ -41,13 +41,8 @@ class UsersController extends AppController {
                 $this->Session->setFlash("Invaid username or password");
             }
             
-//            $hero= "geda";
-//            $pero="feda";
-//            $info=array($hero,$pero);
-//            $this->set($info);
-           // $this->set('haha',$info);
-            $this->set('color','blue');
-            $this->set('car','toyota');
+
+            
         }
         
         public function logout(){
