@@ -64,22 +64,43 @@ class CategoriesController extends AppController {
  * @param string $id
  * @return void
  */
-	public function edit($id = null) {
-		if (!$this->Category->exists($id)) {
-			throw new NotFoundException(__('Invalid category'));
-		}
-		if ($this->request->is(array('post', 'put'))) {
-			if ($this->Category->save($this->request->data)) {
-				$this->Session->setFlash(__('The category has been saved.'));
-				return $this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The category could not be saved. Please, try again.'));
-			}
-		} else {
-			$options = array('conditions' => array('Category.' . $this->Category->primaryKey => $id));
-			$this->request->data = $this->Category->find('first', $options);
-		}
-	}
+	public function edit($id = null){
+//        if($this->Category->exists($id)){
+//            throw new NotFoundException (__('Id was not found '));
+//        }
+        if($this->Auth->user('role')=='admin'){
+        if(!$id){
+            throw new NotFoundException(__('Id was not set'));
+        }
+        
+        $data=$this->Category->findById($id);
+        if(!$data){
+            throw new NotFoundException(__('Id was not found in database'));
+        }
+        
+        if($this->request->is('post')|| $this->request->is('put') ){
+            if($this->Category->save($this->request->data)){
+                $this->Session->setFlash('The data has been edited successfully');
+                return $this->redirect(array('action' => 'index'));
+                //$this->redirect('index');
+            }
+            
+            else{
+                $this->Session->setFlash("The data could not be edited");
+                $this->redirect('edit');
+            }
+        }
+//        else{
+//            $options = array('conditions' => array('Category.' . $this->Category->primaryKey => $id));
+//			$this->request->data = $this->Category->find('first', $options);
+//        }
+        $this->request->data=$data;
+    }
+    else{
+        $this->Session->setFlash(__('You do not have right to do this'));
+        $this->redirect('index');
+    }
+   }
 
 /**
  * delete method

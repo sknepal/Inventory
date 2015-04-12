@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 03, 2015 at 07:03 PM
+-- Generation Time: Apr 12, 2015 at 05:21 AM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `items` (
 --
 
 INSERT INTO `items` (`id`, `category_id`, `title`, `created`, `modified`, `total_quantity`, `remaining_quantity`, `price`) VALUES
-(4, 1, 'Levis', '2015-02-21 19:03:56', '2015-03-18 06:00:59', 10, 10, 1200),
+(4, 1, 'Levises', '2015-02-21 19:03:56', '2015-04-12 05:12:43', 10, 10, 1200),
 (5, 2, 'john players', '2015-02-21 19:18:21', '2015-02-21 19:18:21', 200, 0, 1223),
 (6, 2, 'spring wood2', '2015-02-21 19:18:32', '2015-02-21 19:18:32', 12223, 0, 234),
 (7, 1, 'zaara', '2015-02-21 19:18:46', '2015-02-21 19:18:46', 1232, 0, 123223),
@@ -112,16 +112,16 @@ CREATE TABLE IF NOT EXISTS `users` (
   `password` varchar(40) NOT NULL,
   `role` varchar(5) NOT NULL,
   `created` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `role`, `created`) VALUES
-(3, 'bipinpaudel', 'd8394d9df68f1a3b3ecc32086c329bd7491382e6', 'sfdg', '2015-03-17 18:06:05'),
-(4, 'subigyanepal', '0c187241492d5e11b441003c4b6f89d5cfa8b0a2', 'admin', '2015-03-17 18:13:54'),
-(5, 'bhishanbhandari', '0c187241492d5e11b441003c4b6f89d5cfa8b0a2', 'admin', '2015-03-17 18:14:23');
+(5, 'bhishanbhandari', '0c187241492d5e11b441003c4b6f89d5cfa8b0a2', 'admin', '2015-03-17 18:14:23'),
+(6, 'bipinpaudel', '0c187241492d5e11b441003c4b6f89d5cfa8b0a2', 'admin', '2015-04-09 13:12:23'),
+(7, 'subigyanepal', '0c187241492d5e11b441003c4b6f89d5cfa8b0a2', 'admin', '2015-04-10 05:25:43');
 
 --
 -- Indexes for dumped tables
@@ -174,7 +174,7 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -65,14 +65,14 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                        </div>
                         </ul>
                         <?php else: ?>
-                            
+                           
                             <?php endif; ?>
                            
                             
 	            
 			<?php //echo $this->Session->flash(); ?>
 
-                            <div align="center"> <?php echo $this->fetch('content'); ?> </div>
+                            <div> <?php echo $this->fetch('content'); ?> </div>
 		</div>
 		<footer>
                 <address>&copy; Copyright 2015 All Rights Reserved.<br>CKP INC.</address>

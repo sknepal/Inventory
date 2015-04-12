@@ -41,8 +41,7 @@ class UsersController extends AppController {
                 $this->Session->setFlash("Invaid username or password");
             }
             
-
-            
+//         
         }
         
         public function logout(){
