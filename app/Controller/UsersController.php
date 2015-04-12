@@ -13,7 +13,7 @@ class UsersController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator','Auth');
+	public $components = array('Paginator','Auth','Session');
         public function beforeFilter() {
             parent::beforeFilter();
         //    $this->Auth->allow('index','add');
@@ -26,9 +26,15 @@ class UsersController extends AppController {
  * @return void
  */
 	public function index() {
+             if($this->Auth->user('role')=='admin'){
 		$this->User->recursive = 0;
 		$this->set('users', $this->Paginator->paginate());
-	}
+        }
+        else{
+            $this->Session->setFlash((__('You do not have access to this')));
+            $this->redirect(array('controller'=>'categories','action'=>'index'));
+        }
+             }
         
         public function login(){
             if($this->request->is('post')){
@@ -38,7 +44,8 @@ class UsersController extends AppController {
                     
                     
                 }
-                $this->Session->setFlash("Invaid username or password");
+                else
+                $this->Session->setFlash(__("Invaid username or password"));
             }
             
 //         

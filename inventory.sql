@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 12, 2015 at 05:21 AM
+-- Generation Time: Apr 12, 2015 at 06:51 PM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `categories` (
 `id` int(10) unsigned NOT NULL,
   `name` varchar(50) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `categories`
@@ -38,8 +38,8 @@ CREATE TABLE IF NOT EXISTS `categories` (
 INSERT INTO `categories` (`id`, `name`) VALUES
 (1, 'Pants'),
 (2, 'Shirts'),
-(3, 'Socks'),
-(4, 'shirts');
+(4, 'shirts'),
+(6, 'Socks');
 
 -- --------------------------------------------------------
 
@@ -56,19 +56,20 @@ CREATE TABLE IF NOT EXISTS `items` (
   `total_quantity` int(10) NOT NULL,
   `remaining_quantity` int(10) NOT NULL,
   `price` int(10) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `items`
 --
 
 INSERT INTO `items` (`id`, `category_id`, `title`, `created`, `modified`, `total_quantity`, `remaining_quantity`, `price`) VALUES
-(4, 1, 'Levises', '2015-02-21 19:03:56', '2015-04-12 05:12:43', 10, 10, 1200),
+(4, 1, 'Levis', '2015-02-21 19:03:56', '2015-04-12 18:35:40', 101, 10, 1200),
 (5, 2, 'john players', '2015-02-21 19:18:21', '2015-02-21 19:18:21', 200, 0, 1223),
 (6, 2, 'spring wood2', '2015-02-21 19:18:32', '2015-02-21 19:18:32', 12223, 0, 234),
 (7, 1, 'zaara', '2015-02-21 19:18:46', '2015-02-21 19:18:46', 1232, 0, 123223),
 (8, 2, 'gents park', '2015-02-21 19:25:26', '2015-02-21 19:25:26', 233, 0, 2333),
-(12, 3, 'adidas', '2015-03-04 05:55:47', '2015-03-04 05:56:12', 1233, 0, 13);
+(14, 6, 'Adidas', '2015-04-12 13:05:06', '2015-04-12 13:05:06', 23, 0, 450),
+(19, 6, 'soso', '2015-04-12 13:07:56', '2015-04-12 13:07:56', 23, 0, 234);
 
 -- --------------------------------------------------------
 
@@ -112,7 +113,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `password` varchar(40) NOT NULL,
   `role` varchar(5) NOT NULL,
   `created` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
@@ -121,7 +122,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 INSERT INTO `users` (`id`, `username`, `password`, `role`, `created`) VALUES
 (5, 'bhishanbhandari', '0c187241492d5e11b441003c4b6f89d5cfa8b0a2', 'admin', '2015-03-17 18:14:23'),
 (6, 'bipinpaudel', '0c187241492d5e11b441003c4b6f89d5cfa8b0a2', 'admin', '2015-04-09 13:12:23'),
-(7, 'subigyanepal', '0c187241492d5e11b441003c4b6f89d5cfa8b0a2', 'admin', '2015-04-10 05:25:43');
+(7, 'subigyanepal', '0c187241492d5e11b441003c4b6f89d5cfa8b0a2', 'admin', '2015-04-10 05:25:43'),
+(8, 'normaluser', '0c187241492d5e11b441003c4b6f89d5cfa8b0a2', 'user', '2015-04-12 17:13:44');
 
 --
 -- Indexes for dumped tables
@@ -159,12 +161,12 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT for table `sales`
 --
@@ -174,7 +176,7 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

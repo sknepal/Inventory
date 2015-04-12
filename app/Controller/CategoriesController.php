@@ -5,6 +5,7 @@ App::uses('AppController', 'Controller');
  *
  * @property Category $Category
  * @property PaginatorComponent $Paginator
+ * @property SessionComponent $Session
  */
 class CategoriesController extends AppController {
 
@@ -13,7 +14,7 @@ class CategoriesController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator');
+	public $components = array('Paginator', 'Session');
 
 /**
  * index method
@@ -87,7 +88,7 @@ class CategoriesController extends AppController {
             
             else{
                 $this->Session->setFlash("The data could not be edited");
-                $this->redirect('edit');
+                $this->redirect(array('controller'=>'categories','action'=>'index'));
             }
         }
 //        else{
@@ -110,6 +111,7 @@ class CategoriesController extends AppController {
  * @return void
  */
 	public function delete($id = null) {
+            if($this->Auth->user('role')=='admin'){
 		$this->Category->id = $id;
 		if (!$this->Category->exists()) {
 			throw new NotFoundException(__('Invalid category'));
@@ -122,4 +124,10 @@ class CategoriesController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
+
+else{
+    $this->Session->setFlash(__('You do not have access to this feature'));
+    $this->redirect(array('controller'=>'categories','action'=>'index'));
+}
+                }
 }

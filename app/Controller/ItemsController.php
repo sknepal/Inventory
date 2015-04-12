@@ -64,7 +64,7 @@ class ItemsController extends AppController {
 			$this->Item->create();
 			if ($this->Item->save($this->request->data)) {
 				$this->Session->setFlash(__('The item has been saved.'));
-				return $this->redirect(array('index'));
+				return $this->redirect(array('controller'=>'categories','action'=>'index'));
 			} else {
 				$this->Session->setFlash(__('The item could not be saved. Please, try again.'));
 			}
@@ -88,7 +88,8 @@ class ItemsController extends AppController {
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Item->save($this->request->data)) {
 				$this->Session->setFlash(__('The item has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(array('controller'=>'categories',
+                                    'action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The item could not be saved. Please, try again.'));
 			}
@@ -108,6 +109,7 @@ class ItemsController extends AppController {
  * @return void
  */
 	public function delete($id = null) {
+            if($this->Auth->user('role')=='admin'){
 		$this->Item->id = $id;
 		if (!$this->Item->exists()) {
 			throw new NotFoundException(__('Invalid item'));
@@ -118,8 +120,13 @@ class ItemsController extends AppController {
 		} else {
 			$this->Session->setFlash(__('The item could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
+		return $this->redirect(array('controller'=>'categories', 'action' => 'index'));
 	}
+        else{
+            $this->Session->setFlash(__('You do not have access to this feature'));
+            $this->redirect(array('controller'=>'categories','action'=>'index'));
+        }
+        }
         
         public function search($search=null){
             if(!$search){

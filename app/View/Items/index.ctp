@@ -6,13 +6,13 @@
 	<table cellpadding="0" cellspacing="0" class="order-table table">
 	<thead>
 	<tr>
-			<th>id</th>
-			<th>category_id</th>
-			<th>title</th>
-			<th>created</th>
-			<th>modified</th>
-			<th>count</th>
-			<th>price</th>
+			
+			<th>Category</th>
+			<th>Title</th>
+			<th>Created</th>
+			<th>Modified</th>
+			<th>Count</th>
+			<th>Price</th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
                         <th> Sale </th>
 	</tr>
@@ -33,7 +33,8 @@
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $item['Item']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $item['Item']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $item['Item']['id']), array(), __('Are you sure you want to delete # %s?', $item['Item']['id'])); ?>
+			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $item['Item']['id']), array(),
+                                __('Are you sure you want to delete # %s?', $item['Item']['title'])); ?>
 		</td>
                 <td>  <?php echo $this->Html->link('Sale',array('controller'=>'sales','action'=>'add',
                     $item['Item']['id'])) ;?> </td>

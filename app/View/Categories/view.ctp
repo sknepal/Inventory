@@ -1,16 +1,13 @@
 <div class="categories view">
 <h2><?php echo __('Category'); ?></h2>
 	<dl>
-		<dt><?php echo __('Id'); ?></dt>
-		<dd>
-			<?php echo h($category['Category']['id']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Name'); ?></dt>
-		<dd>
+		
+		
+		<h4> <?php echo __('Name'); ?></h4>
+		
 			<?php echo h($category['Category']['name']); ?>
 			&nbsp;
-		</dd>
+		
 	</dl>
 </div>
 <!--<div class="actions">
