@@ -1,5 +1,6 @@
 <?php
 App::uses('AppController', 'Controller');
+
 /**
  * Sales Controller
  *
@@ -14,8 +15,14 @@ class SalesController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session','Auth');
-        public $helpers= array('GChart.GChart');
+	public $helpers = array( 'Time','Javascript', 'Ajax');
+	public $components = array('Paginator', 'Session','Auth', 'CsvView.CsvView',
+		'RequestHandler' => array(
+			'viewClassMap' => array('csv' => 'CsvView.Csv')
+		)
+
+	);
+       // public $helpers= array('GChart.GChart');
 /**
  * index method
  *
@@ -27,7 +34,7 @@ class SalesController extends AppController {
 		$this->Sale->recursive = 0;
 		$this->set('sales', $this->Paginator->paginate());
                 
-                $data = array(
+       /*         $data = array(
   'labels' => array(
     array('string' => 'Sample'),
     array('number' => 'Piston 1'),
@@ -48,7 +55,7 @@ class SalesController extends AppController {
   'title' => 'Pie Chart',
   'type' => 'pie'
 );
-                $this->set('data',$data);
+                $this->set('data',$data);*/
 	}
 
 /**
@@ -158,4 +165,35 @@ class SalesController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
+
+
+
+	public function export()
+	{
+		if ($this->request->is(array('post', 'put'))) {
+			$from = date($this->request->data(from));
+			$to = date($this->request->data(to));
+			if ($to == null) $to = date("Y-m-d");
+			if ($from == null) $from = date("Y-m-d", strtotime('-30 day'));
+			$conditions = array(
+				'conditions' => array(
+					'date(Sale.date) BETWEEN ? AND ?' => array($from, $to),
+				));
+			$results = $this->Sale->find('all', $conditions);
+			$_extract = array('Item.title', 'Item.created', 'Item.modified', 'Item.total_quantity', 'Item.remaining_quantity', 'Item.price',
+				'Sale.quantity', 'Sale.sold_price', 'Sale.total_price', 'Sale.date', 'User.username');
+
+			$_header = array('Item', 'Created On', 'Modified On', 'Total Quantity', 'Remaining Quantity', 'Price',
+				'Sold Quantity', 'Sold Price', 'Total Sold Amount', 'Sold date', 'Sold by (username)');
+
+			$_serialize = 'results';
+			$this->response->download($from . '--' . $to .'.csv');
+			$this->viewClass = 'CsvView.Csv';
+			$this->set(compact('results' ,'_serialize', '_header', '_extract'));
+
+
+		}
+	}
+
 }
+

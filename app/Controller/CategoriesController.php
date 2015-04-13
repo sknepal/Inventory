@@ -73,7 +73,7 @@ class CategoriesController extends AppController {
         if(!$id){
             throw new NotFoundException(__('Id was not set'));
         }
-        
+
         $data=$this->Category->findById($id);
         if(!$data){
             throw new NotFoundException(__('Id was not found in database'));

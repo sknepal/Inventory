@@ -47,7 +47,7 @@
 	</table>
         </section>	
 </div>
-    <script src="https://www.google.com/jsapi"></script>
+    <!--<script src="https://www.google.com/jsapi"></script>
 <div id="test"> </div>
 <script type="text/javascript">
   google.load("visualization", "1", {packages: ["corechart"]});
@@ -65,20 +65,21 @@
     });
   });
 </script>
-<?php
-echo $this->GChart->start('test');
-echo $this->GChart->visualize('test', $data); ?>
+--><?php
+/*echo $this->GChart->start('test');
+echo $this->GChart->visualize('test', $data); */?>
 
     
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('New Sale'), array('action' => 'add')); ?></li>
+		<li><?php echo $this->Html->link(__('New Sale'), array('controller' => 'sales','action' => 'add')); ?></li>
 		<li><?php echo $this->Html->link(__('List Users'), array('controller' => 'users', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('List Categories'), array('controller' => 'categories', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Category'), array('controller' => 'categories', 'action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('List Items'), array('controller' => 'items', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Item'), array('controller' => 'items', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('Export Report'),  array('controller' => 'sales', 'action' => 'export')); ?> </li>
 	</ul>
 </div>
