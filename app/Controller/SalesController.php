@@ -64,6 +64,13 @@ class SalesController extends AppController {
            //$data=$this->Sale->Item->findById($id);
 		if ($this->request->is('post')) {   
 			$this->Sale->create();
+                        $this->request->data['Sale']['total_price']=
+                             $this->request->data['Sale']['sold_price']*$this->request->data['Sale']['quantity'];
+                        $this->Sale->save($this->request->data['Sale']['total_price']);
+                        
+//                        $this->request->data['Item']['total_quantity']=
+//                        $this->request->data['Item']['total_quantity']-$this->request->data['Sale']['quantity'];
+//                        $this->Item->save($this->request->data['Item']['total_quantity']);
                         
 			 if($this->Sale->save($this->request->data)) {
                           //      calculate($this->request->data['Sale']['quantity']);
@@ -109,6 +116,9 @@ class SalesController extends AppController {
 			throw new NotFoundException(__('Invalid sale'));
 		}
 		if ($this->request->is(array('post', 'put'))) {
+                    $this->request->data['Sale']['total_price']=
+                             $this->request->data['Sale']['sold_price']*$this->request->data['Sale']['quantity'];
+                        $this->Sale->save($this->request->data['Sale']['total_price']);
 			if ($this->Sale->save($this->request->data)) {
 				$this->Session->setFlash(__('The sale has been saved.'));
 				return $this->redirect(array('action' => 'index'));
@@ -163,11 +173,15 @@ class SalesController extends AppController {
 					'date(Sale.date) BETWEEN ? AND ?' => array($from, $to),
 				));
 			$results = $this->Sale->find('all', $conditions);
+                        //$total=mysql_query("SELECT * FROM table1", $link);
+                       
 			$_extract = array('Item.title', 'Item.total_quantity', 'Item.remaining_quantity', 'Item.price',
-				'Sale.quantity', 'Sale.sold_price', 'Sale.total_price', 'Sale.date', 'User.username');
+				'Sale.quantity', 'Sale.sold_price', 'Sale.total_price', 'Sale.date', 'User.username',
+                            'sum(Sale.total_price)');
 
 			$_header = array('Item','Total Quantity', 'Remaining Quantity', 'Price',
-				'Sold Quantity', 'Sold Price', 'Total Sold Amount', 'Sold date', 'Sold by (username)');
+				'Sold Quantity', 'Sold Price', 'Total Sold Amount', 'Sold date',
+                            'Sold by (username)','Total price sum');
 
 			$_serialize = 'results';
 			$this->response->download($from . '--' . $to .'.csv');

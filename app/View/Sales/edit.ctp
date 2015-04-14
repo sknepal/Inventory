@@ -6,9 +6,9 @@
 		echo $this->Form->input('id');
 		echo $this->Form->input('user_id',array('type'=>'hidden',$this->Session->read('Auth.User.id')));
 		echo $this->Form->input('item_id');
-		echo $this->Form->input('price');
+		
 		echo $this->Form->input('sold_price');
-                echo $this->Form->input('total_price',array('id'=>'total_price'));
+                
 		echo $this->Form->input('date');
 		echo $this->Form->input('quantity');
 	?>

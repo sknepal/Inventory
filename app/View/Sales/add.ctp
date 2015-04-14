@@ -19,7 +19,7 @@
          <?php	echo $this->Form->input('sold_price'); ?>
 	 <?php	echo $this->Form->input('date'); ?>
 	<?php	echo $this->Form->input('quantity'); ?>
-              <?php      echo $this->Form->input('total_price'); ?>
+             
 	
 	
 <?php echo $this->Form->end(__('Submit')); ?>

@@ -69,9 +69,9 @@ Cache::config('default', array('engine' => 'File'));
  * CakePlugin::load('DebugKit'); //Loads a single plugin named DebugKit
  *
  */
-CakePlugin::load('DebugKit');
-CakePlugin::load('GChart');
-CakePlugin::load('CsvView');
+//CakePlugin::load('DebugKit');
+//CakePlugin::load('GChart');
+//CakePlugin::load('CsvView');
 CakePlugin::loadAll();
 /**
  * To prefer app translation over plugin translation, you can set
