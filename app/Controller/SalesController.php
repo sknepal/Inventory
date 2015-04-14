@@ -122,8 +122,6 @@ class SalesController extends AppController
             if ($this->request->is(array('post', 'put'))) {
                 $newQuantity = $this->request->data['Sale']['quantity'];
                 $oldQuantity = $this->Session->read('oldQuantity');
-                echo('old: ' . $oldQuantity);
-                echo('new: ' . $newQuantity);
                 $options = array('controller' => 'items', 'conditions' => array('Item.'
                 . $this->Sale->Item->primaryKey => $this->request->data['Sale']['item_id']));
                 $remQuantity = $this->Sale->Item->find('first', $options);
@@ -137,7 +135,6 @@ class SalesController extends AppController
                 else if ($oldQuantity < $newQuantity)
                     $operation = $remQuantity['Item']['remaining_quantity'] - ($newQuantity - $oldQuantity);
                 else $operation = $remQuantity['Item']['remaining_quantity'];
-                echo('operation: ' . $operation);
                 if ($this->request->data['Sale']['quantity'] <= $remQuantity['Item']['total_quantity']) {
                     $this->Sale->Item->id = $this->request->data['Sale']['item_id'];
                     if ($this->Sale->save($this->request->data) && $this->Sale->Item->saveField('remaining_quantity', $operation)) {
