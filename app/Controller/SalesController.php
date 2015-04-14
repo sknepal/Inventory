@@ -22,6 +22,7 @@ class SalesController extends AppController {
 		)
 
 	);
+        var $uses = array('Sale', 'Item');
        // public $helpers= array('GChart.GChart');
 /**
  * index method
@@ -33,29 +34,6 @@ class SalesController extends AppController {
                 
 		$this->Sale->recursive = 0;
 		$this->set('sales', $this->Paginator->paginate());
-                
-       /*         $data = array(
-  'labels' => array(
-    array('string' => 'Sample'),
-    array('number' => 'Piston 1'),
-    array('number' => 'Piston 2')
-  ),
-  'data' => array(
-    array('S1', 74.01, 74.03),
-    array('S2', 74.05, 74.04),
-    array('S3', 74.03, 74.01),
-    array('S4', 74.00, 74.02),
-    array('S5', 74.12, 74.05),
-    array('S6', 74.04, 74.04),
-    array('S7', 74.05, 74.06),
-    array('S8', 74.03, 74.02),
-    array('S9', 74.01, 74.03),
-    array('S10', 74.04, 74.01),
-  ),
-  'title' => 'Pie Chart',
-  'type' => 'pie'
-);
-                $this->set('data',$data);*/
 	}
 
 /**
@@ -84,15 +62,25 @@ class SalesController extends AppController {
             }
             
            //$data=$this->Sale->Item->findById($id);
-		if ($this->request->is('post')) {
+		if ($this->request->is('post')) {   
 			$this->Sale->create();
-			if ($this->Sale->save($this->request->data)) {
+                        $this->request->data['Sale']['total_price']=
+                             $this->request->data['Sale']['sold_price']*$this->request->data['Sale']['quantity'];
+                        $this->Sale->save($this->request->data['Sale']['total_price']);
+                        
+//                        $this->request->data['Item']['total_quantity']=
+//                        $this->request->data['Item']['total_quantity']-$this->request->data['Sale']['quantity'];
+//                        $this->Item->save($this->request->data['Item']['total_quantity']);
+                        
+			 if($this->Sale->save($this->request->data)) {
+                          //      calculate($this->request->data['Sale']['quantity']);
 				$this->Session->setFlash(__('The sale has been saved.'));
 				return $this->redirect(array('action' => 'index'));
-			} else {
+                         }
+                         else
 				$this->Session->setFlash(__('The sale could not be saved. Please, try again.'));
-			}
-		}
+			
+                }
                 else{
 //
                   $options = array('controller'=>'items','conditions' => array('Item.'
@@ -102,11 +90,6 @@ class SalesController extends AppController {
 //                        $options = array('conditions' => array('Category.' . $this->Category->primaryKey => $id));
 //			$this->request->data = $this->Category->find('first', $options);
                         }
-                //$items = $this->Sale->Item->find('list');
-		//$users = $this->Sale->User->find('list');
-                //$overall=array($data,$uid);
-                  //      $this->set('items', $data);
-               // $items = $this->Sale->Item->find('list');
                 $this->set('items',$data);
 		//$this->redirect(array('controller'=>'items','action'=>'calculate'));
 		//$categories = $this->Sale->Category->find('list');
@@ -121,11 +104,22 @@ class SalesController extends AppController {
  * @param string $id
  * @return void
  */
+//        public function calculate($quantity){
+//            
+//            $total= $this->Item->find('list');
+//            $this->Item->save($this->request->data['Item']['total_quantity'])=
+//                    $this->request->data['Item']['total_quantity'] - $quantity;
+//            
+//        }
 	public function edit($id = null) {
+             if($this->Auth->user('role')=='admin'){
 		if (!$this->Sale->exists($id)) {
 			throw new NotFoundException(__('Invalid sale'));
 		}
 		if ($this->request->is(array('post', 'put'))) {
+                    $this->request->data['Sale']['total_price']=
+                             $this->request->data['Sale']['sold_price']*$this->request->data['Sale']['quantity'];
+                        $this->Sale->save($this->request->data['Sale']['total_price']);
 			if ($this->Sale->save($this->request->data)) {
 				$this->Session->setFlash(__('The sale has been saved.'));
 				return $this->redirect(array('action' => 'index'));
@@ -144,6 +138,11 @@ class SalesController extends AppController {
                 $items = $this->Sale->Item->find('list');
 		$this->set(compact('items'));
                 }
+                else{
+          $this->Session->setFlash(__('You do not have access to this. Contact your admin immediately.'));
+         $this->redirect(array('controller'=>'sales','action'=>'index'));
+                }
+        }
 
 /**
  * delete method
@@ -153,6 +152,7 @@ class SalesController extends AppController {
  * @return void
  */
 	public function delete($id = null) {
+             if($this->Auth->user('role')=='admin'){
 		$this->Sale->id = $id;
 		if (!$this->Sale->exists()) {
 			throw new NotFoundException(__('Invalid sale'));
@@ -165,6 +165,11 @@ class SalesController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
+        else{
+         $this->Session->setFlash(__('You do not have access to this. Contact your admin immediately.'));
+         $this->redirect(array('controller'=>'sales','action'=>'index'));
+        }
+        }
 
 
 
@@ -180,11 +185,15 @@ class SalesController extends AppController {
 					'date(Sale.date) BETWEEN ? AND ?' => array($from, $to),
 				));
 			$results = $this->Sale->find('all', $conditions);
-			$_extract = array('Item.title', 'Item.created', 'Item.modified', 'Item.total_quantity', 'Item.remaining_quantity', 'Item.price',
-				'Sale.quantity', 'Sale.sold_price', 'Sale.total_price', 'Sale.date', 'User.username');
+                        //$total=mysql_query("SELECT * FROM table1", $link);
+                       
+			$_extract = array('Item.title', 'Item.total_quantity', 'Item.remaining_quantity', 'Item.price',
+				'Sale.quantity', 'Sale.sold_price', 'Sale.total_price', 'Sale.date', 'User.username',
+                            'sum(Sale.total_price)');
 
-			$_header = array('Item', 'Created On', 'Modified On', 'Total Quantity', 'Remaining Quantity', 'Price',
-				'Sold Quantity', 'Sold Price', 'Total Sold Amount', 'Sold date', 'Sold by (username)');
+			$_header = array('Item','Total Quantity', 'Remaining Quantity', 'Price',
+				'Sold Quantity', 'Sold Price', 'Total Sold Amount', 'Sold date',
+                            'Sold by (username)','Total price sum');
 
 			$_serialize = 'results';
 			$this->response->download($from . '--' . $to .'.csv');

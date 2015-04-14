@@ -64,7 +64,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                             <?php echo $this->Session->read('Auth.User.username') ; ?> </strong></li>
                        </div>
                         </ul>
-                    <?php echo $this->Session->flash(); ?>
+                    <?php echo $this->Session->flash(); ?> <div> 
                         <?php else: ?>
                            
                             <?php endif; ?>

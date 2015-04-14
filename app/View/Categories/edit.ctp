@@ -6,18 +6,18 @@
 //    echo $this->Form->input('id',array('type'=>'hidden'));
 //    echo $this->Form->end('Edit item');
 ?>
-
+<?php echo $id; ?>
 <div class="categories form">
 <?php echo $this->Form->create('Category'); ?>
 	<fieldset>
 		<legend><?php echo __('Edit Category'); ?></legend>
 	<?php
-		echo $this->Form->input('id');
+//		echo $this->Form->input('id');
 		//echo $this->Form->input('category_id');
 		echo $this->Form->input('name');
 		//echo $this->Form->input('total_quantity');
 		//echo $this->Form->input('price');
-                echo $this->Form->input('id',array('type'=>'hidden'));
+                echo $this->Form->input('id',array('type'=>'hidden', 'value' => $id));
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>
