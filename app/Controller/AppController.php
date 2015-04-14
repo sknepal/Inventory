@@ -27,14 +27,15 @@ App::uses('Controller', 'Controller');
  * Add your application-wide methods in the class below, your controllers
  * will inherit them.
  *
- * @package		app.Controller
- * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
+ * @package        app.Controller
+ * @link        http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
-class AppController extends Controller {
-    var $helpers = array('Javascript', 'Ajax','Form','Html', 'Time');
-   // public $components = array('DebugKit.Toolbar');
-    public $components = array('Session','Auth');//,'DebugKit.Toolbar');
+class AppController extends Controller
+{
+    var $helpers = array('Javascript', 'Ajax', 'Form', 'Html', 'Time');
+    // public $components = array('DebugKit.Toolbar');
+    public $components = array('Session', 'Auth');//,'DebugKit.Toolbar');
 
-    
+
 }
 
