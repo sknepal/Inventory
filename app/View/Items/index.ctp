@@ -21,7 +21,7 @@
             
 	<?php foreach ($items as $item): ?>
 	<tr>
-		<td><?php echo h($item['Item']['id']); ?>&nbsp;</td>
+		
 		<td>
 			<?php echo $this->Html->link($item['Category']['name'], array('controller' => 'categories', 'action' => 'view', $item['Category']['id'])); ?>
 		</td>

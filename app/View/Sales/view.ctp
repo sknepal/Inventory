@@ -1,46 +1,37 @@
 <div class="sales view">
 <h2><?php echo __('Sale'); ?></h2>
 	<dl>
-		<dt><?php echo __('Id'); ?></dt>
-		<dd>
-			<?php echo h($sale['Sale']['id']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('User'); ?></dt>
-		<dd>
-			<?php echo $this->Html->link($sale['User']['id'], array('controller' => 'users', 'action' => 'view', $sale['User']['id'])); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Category'); ?></dt>
-		<dd>
+		
+		<h4><?php echo __('Category'); ?></h4>
+	
 			<?php echo $this->Html->link($sale['Category']['name'], array('controller' => 'categories', 'action' => 'view', $sale['Category']['id'])); ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('Item'); ?></dt>
-		<dd>
+		
+		<h4><?php echo __('Item'); ?></h4>
+		
 			<?php echo $this->Html->link($sale['Item']['title'], array('controller' => 'items', 'action' => 'view', $sale['Item']['id'])); ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('Price'); ?></dt>
-		<dd>
-			<?php echo h($sale['Sale']['price']); ?>
+		
+		<h4><?php echo __('Price'); ?></h4>
+		
+			<?php echo h($sale['Item']['price']); ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('Sold Price'); ?></dt>
-		<dd>
+		
+		<h4><?php echo __('Sold Price'); ?></h4>
+		
 			<?php echo h($sale['Sale']['sold_price']); ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('Date'); ?></dt>
-		<dd>
+		
+		<h4><?php echo __('Date'); ?></h4>
+		
 			<?php echo h($sale['Sale']['date']); ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('Quantity'); ?></dt>
-		<dd>
+		
+		<h4><?php echo __('Quantity'); ?></h4>
+		
 			<?php echo h($sale['Sale']['quantity']); ?>
 			&nbsp;
-		</dd>
+		
 	</dl>
 </div>
 <div class="actions">

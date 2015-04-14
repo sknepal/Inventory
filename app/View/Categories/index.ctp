@@ -1,3 +1,4 @@
+
 <?php echo $this->Html->script('search'); ?>
 <div class="categories index">
 	<h2><?php echo __('Categories'); ?></h2>
@@ -29,4 +30,17 @@
 	</table>
 	</section>
 	
+</div>
+    
+<div class="actions">
+	<h3><?php echo __('Actions'); ?></h3>
+	<ul>
+	
+		<li><?php echo $this->Html->link(__('List Users'), array('controller' => 'users', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Categories'), array('controller' => 'categories', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Category'), array('controller' => 'categories', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Item'), array('controller' => 'items', 'action' => 'add')); ?> </li>
+		
+	</ul>
 </div>

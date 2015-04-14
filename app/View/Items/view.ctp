@@ -2,7 +2,7 @@
 <h2><?php echo __('Item'); ?></h2>
 	
 		
-<h4><?php echo __('Category: '); ?></h4><?php echo $this->Html->link($item['Category']['name'], array('controller' => 'categories', 'action' => 'view', $item['Category']['id'])); ?>
+<h4><?php echo __('Category: '); ?></h4><?php echo $this->Html->link($item['Category']['name'], array('controller' => 'categories', 'action' => 'index', $item['Category']['id'])); ?>
 			&nbsp;
                         <br>
                         <h4><?php echo __('Title'); ?></h4>

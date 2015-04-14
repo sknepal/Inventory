@@ -20,28 +20,24 @@ class Category extends AppModel {
  * @var array
  */
 	public $validate = array(
-		'id' => array(
-			'blank' => array(
-				'rule' => array('blank'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
+//            'id'=>array(
+//              'blank'=>array(
+//                  'rule'=>'blank'
+//              )  
+//            ),
+		
 		'name' => array(
-			'maxLength' => array(
-				'rule' => array('maxLength','20'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
 			'notEmpty' => array(
 				'rule' => array('notEmpty'),
 				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+			'isUnique' => array(
+				'rule' => array('isUnique'),
+				'message' => 'This category already exists',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
@@ -61,7 +57,7 @@ class Category extends AppModel {
 		'Item' => array(
 			'className' => 'Item',
 			'foreignKey' => 'category_id',
-			'dependent' => true,
+			'dependent' => false,
 			'conditions' => '',
 			'fields' => '',
 			'order' => '',

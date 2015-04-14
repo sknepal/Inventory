@@ -33,7 +33,7 @@ App::uses('Controller', 'Controller');
 class AppController extends Controller {
     var $helpers = array('Javascript', 'Ajax','Form','Html', 'Time');
    // public $components = array('DebugKit.Toolbar');
-    public $components = array('Session','Auth');
+    public $components = array('Session','Auth');//,'DebugKit.Toolbar');
 
     
 }
