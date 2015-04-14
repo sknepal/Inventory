@@ -84,7 +84,6 @@ class SalesController extends AppController
 
                 $newRemainingQuantity = $remQuantity['Item']['remaining_quantity'] - $this->request->data['Sale']['quantity'];
                 $this->Sale->Item->id = $id;
-                echo $this->Sale->Item->id;
                 if ($this->Sale->save($this->request->data) && $this->Sale->Item->saveField('remaining_quantity', $newRemainingQuantity)) {
 
                     $this->Session->setFlash(__('The sale has been saved.'));
