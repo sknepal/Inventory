@@ -8,7 +8,7 @@
 		echo $this->Form->input('item_id');
 		
 		echo $this->Form->input('sold_price');
-                
+               
 		echo $this->Form->input('date');
 		echo $this->Form->input('quantity');
 	?>

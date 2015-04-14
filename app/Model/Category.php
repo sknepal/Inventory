@@ -57,7 +57,7 @@ class Category extends AppModel {
 		'Item' => array(
 			'className' => 'Item',
 			'foreignKey' => 'category_id',
-			'dependent' => false,
+			'dependent' => true,
 			'conditions' => '',
 			'fields' => '',
 			'order' => '',

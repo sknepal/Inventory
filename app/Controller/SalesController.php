@@ -112,6 +112,7 @@ class SalesController extends AppController {
 //            
 //        }
 	public function edit($id = null) {
+             if($this->Auth->user('role')=='admin'){
 		if (!$this->Sale->exists($id)) {
 			throw new NotFoundException(__('Invalid sale'));
 		}
@@ -137,6 +138,11 @@ class SalesController extends AppController {
                 $items = $this->Sale->Item->find('list');
 		$this->set(compact('items'));
                 }
+                else{
+          $this->Session->setFlash(__('You do not have access to this. Contact your admin immediately.'));
+         $this->redirect(array('controller'=>'sales','action'=>'index'));
+                }
+        }
 
 /**
  * delete method
@@ -146,6 +152,7 @@ class SalesController extends AppController {
  * @return void
  */
 	public function delete($id = null) {
+             if($this->Auth->user('role')=='admin'){
 		$this->Sale->id = $id;
 		if (!$this->Sale->exists()) {
 			throw new NotFoundException(__('Invalid sale'));
@@ -158,6 +165,11 @@ class SalesController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
+        else{
+         $this->Session->setFlash(__('You do not have access to this. Contact your admin immediately.'));
+         $this->redirect(array('controller'=>'sales','action'=>'index'));
+        }
+        }
 
 
 

@@ -1,9 +1,4 @@
-<script>
-    $('#quantity').on('change',function{
-        document.getElementById("sold_price").val()= "lamo";
-        $('#total_price').val('#sold_price'.val() * '#quantity'.valueOf());
-    })
-</script>
+
 
     <?php echo $this->Form->create('Sale'); ?>
 	
@@ -11,8 +6,9 @@
 	<?php 
        // echo $this->Form->input('id');
 		echo $this->Form->input('user_id',
-                        array('type'=>'hidden','default'=>$this->Session->read('Auth.User.id')));//,array('type'=>'hidden',$this->Session->read('User.id'))); 
-                 //   $this->Session->read('Auth.User.id')));
+                        array('type'=>'hidden',
+                           'default'=>$this->Session->read('Auth.User.id')));
+            
 		echo $this->Form->input('item_id');
             ?>		
                 

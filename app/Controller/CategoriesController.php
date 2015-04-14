@@ -66,6 +66,7 @@ class CategoriesController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
+            if($this->Auth->user('role')=='admin'){
 		if (!$this->Category->exists($id)) {
 			throw new NotFoundException(__('Invalid category'));
 		}
@@ -84,7 +85,11 @@ class CategoriesController extends AppController {
 			$this->request->data = $this->Category->find('first', $options);
 		}
 	}
-
+        else{
+            $this->Session->setFlash(__('You do not have access to this'));
+            $this->redirect(array('controller'=>'categories','action'=>'index'));
+        }
+        }
 /**
  * delete method
  *
@@ -93,6 +98,7 @@ class CategoriesController extends AppController {
  * @return void
  */
 	public function delete($id = null) {
+             if($this->Auth->user('role')=='admin'){
 		$this->Category->id = $id;
 		if (!$this->Category->exists()) {
 			throw new NotFoundException(__('Invalid category'));
@@ -105,4 +111,9 @@ class CategoriesController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
+        else{
+            $this->Session->setFlash(__('You cannot delete this.'));
+            $this->redirect(array('controller'=>'categories','action'=>'index'));
+        }
+        }
 }
