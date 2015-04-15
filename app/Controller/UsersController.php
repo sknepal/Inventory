@@ -22,6 +22,14 @@ class UsersController extends AppController
         parent::beforeFilter();
 
     }
+    public function beforeSave($options = array()) {
+    if(!empty($this->data['User']['password'])) {
+        $this->data['User']['password'] = AuthComponent::password($this->data['User']['password']);
+    } else {
+        unset($this->data['User']['password']);
+    }
+    return true;
+}
 
     /**
      * index method
@@ -117,6 +125,7 @@ class UsersController extends AppController
             $options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
             $this->request->data = $this->User->find('first', $options);
         }
+//       $this->unset($this->data['User']['password']);
     }
 
     /**
