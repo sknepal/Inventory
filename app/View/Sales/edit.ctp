@@ -4,8 +4,8 @@
 		<legend><?php echo __('Edit Sale'); ?></legend>
 	<?php
 		echo $this->Form->input('id');
-		echo $this->Form->input('user_id',array('type'=>'hidden',$this->Session->read('Auth.User.id')));
-		echo $this->Form->input('item_id');
+	echo $this->Form->input('user_id', array('type' => 'hidden', $this->Session->read('Auth.User.id')));
+	echo $this->Form->input('item_id');
 		
 		echo $this->Form->input('sold_price');
                

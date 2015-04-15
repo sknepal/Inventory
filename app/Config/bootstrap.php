@@ -24,7 +24,6 @@
 
 // Setup a 'default' cache configuration for use in the application.
 Cache::config('default', array('engine' => 'File'));
-
 /**
  * The settings below can be used to set additional paths to models, views and controllers.
  *
@@ -69,9 +68,7 @@ Cache::config('default', array('engine' => 'File'));
  * CakePlugin::load('DebugKit'); //Loads a single plugin named DebugKit
  *
  */
-//CakePlugin::load('DebugKit');
-//CakePlugin::load('GChart');
-//CakePlugin::load('CsvView');
+
 CakePlugin::loadAll();
 /**
  * To prefer app translation over plugin translation, you can set
