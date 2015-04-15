@@ -53,22 +53,8 @@ public $displayField = array('item_id', 'sold_price');
 //			),
 //		),
 		'sold_price' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-			'notEmpty' => array(
-				'rule' => array('notEmpty'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
+			'rule' => array('naturalNumber', true),
+                'message' => 'Please supply positive sold price.'
 		),
 		'date' => array(
 			'datetime' => array(
@@ -80,23 +66,9 @@ public $displayField = array('item_id', 'sold_price');
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'quantity' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-			'notEmpty' => array(
-				'rule' => array('notEmpty'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
+                    'quantity' => array(
+			'rule' => array('naturalNumber', true),
+                        'message' => 'Please supply positive quantity.'
 		),
 	);
 

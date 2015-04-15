@@ -34,8 +34,8 @@
                         <?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $item['Item']['id']), array(),
                             __('Are you sure you want to delete # %s?', $item['Item']['title'])); ?>
                     </td>
-                    <td>  <?php echo $this->Html->link('Sale', array('controller' => 'sales', 'action' => 'add',
-                            $item['Item']['id'])); ?> </td>
+                    <td class="actions">  <?php echo $this->Html->link('Sale', array('controller' => 'sales', 'action' => 'add',
+                        $item['Item']['id'])); ?> </td>
                 </tr>
             <?php endforeach; ?>
             </tbody>

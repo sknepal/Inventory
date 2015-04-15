@@ -65,6 +65,8 @@ class ItemsController extends AppController
     {
         if ($this->request->is('post')) {
             $this->Item->create();
+            $this->request->data['Item']['remaining_quantity']=$this->request->data['Item']['total_quantity'];
+            $this->Item->save($this->request->data['Item']['remaining_quantity']);
             if ($this->Item->save($this->request->data)) {
                 $this->Session->setFlash(__('The item has been saved.'));
                 return $this->redirect(array('controller' => 'categories', 'action' => 'index'));
@@ -72,7 +74,6 @@ class ItemsController extends AppController
                 $this->Session->setFlash(__('The item could not be saved. Please, try again.'));
             }
         }
-
         $categories = $this->Item->Category->find('list', array('order' => 'name'));
         $this->set(compact('categories'));
     }
